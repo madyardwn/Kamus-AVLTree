@@ -189,7 +189,6 @@ void deleteBinaryTree(address *root)
 }
 
 char *input(char karakter[25]){
-    system("cls");
     char ch;
     int i;
     
@@ -225,17 +224,22 @@ char *input(char karakter[25]){
 
 int main ()
 {
-	system("cls");
     char info[25];
     address *root = NULL;
 
 	// insert tree AVL
-    strcpy(info, input(info));
+	system("cls");
+    printf("kata :");
+	strcpy(info, input(info));
 	root = InsertAVL(root, info);
 	
+	system("cls");
+	printf("kata :");
 	strcpy(info, input(info));
     root = InsertAVL(root, info);
-	    
+	
+	system("cls");
+	printf("kata :");    
 	strcpy(info, input(info));
     root = InsertAVL(root, info);    
     
@@ -250,10 +254,12 @@ int main ()
 	printf("right 				: %s\n", root->right->info);
 	getch();
 	
-	// remove 
+	// remove
+	system("cls");
+	printf("remove 	:");
 	strcpy(info, input(info));
     root = remove(root, info);
-	printf("\ndeleted			: %s\n", info);
+	printf("\ndeleted	:%s\n", info);
 	postPrint(root);    
 	
 	// dealoc
