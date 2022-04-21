@@ -1,19 +1,12 @@
 #include <cstdlib>
-<<<<<<< HEAD
-=======
 #include <string.h>
->>>>>>> ed13747 (konversi ke dalam string)
 #include <stdio.h>
 #include <conio.h>
 
 typedef struct node{
     struct node *left;
     struct node *right;
-<<<<<<< HEAD
-    int info;
-=======
     char info[25];
->>>>>>> ed13747 (konversi ke dalam string)
     int height;
 }address;
 
@@ -38,22 +31,14 @@ int getBalanceFactor(address *root){
     return (getHeight(root->left) - getHeight(root->right));
 }
 
-<<<<<<< HEAD
-address *alokasi(int data){
-=======
 address *alokasi(char *data){
->>>>>>> ed13747 (konversi ke dalam string)
     address *P;
     
     P = (address *) malloc(sizeof(address));
     if(P == NULL){
         return 0;
     }
-<<<<<<< HEAD
-    P->info = data;
-=======
     strcpy(P->info,data);
->>>>>>> ed13747 (konversi ke dalam string)
     P->left = NULL;
     P->right = NULL;
     P->height = 1;
@@ -109,25 +94,14 @@ address *rotate(address *root){
     return root;
 }
 
-<<<<<<< HEAD
-address *InsertAVL(address *root, int data){
-
-=======
 address *InsertAVL(address *root, char *data){
->>>>>>> ed13747 (konversi ke dalam string)
     if(root == NULL){
         root = alokasi(data);
         return root;
     }
-<<<<<<< HEAD
-    if(data < root->info){
-        root->left = InsertAVL(root->left, data);
-    }else if (data > root->info){
-=======
     if(strcmp(data, root->info) < 0){
         root->left = InsertAVL(root->left, data);
     }else if (strcmp(data, root->info) > 0){
->>>>>>> ed13747 (konversi ke dalam string)
         root->right = InsertAVL(root->right, data);
     }else{
         printf("data sudah berada di dalam tree");
@@ -158,22 +132,6 @@ address *Successor(address *root){
     return current;
 }
 
-<<<<<<< HEAD
-address *Delete(address *root, int data){
-    
-    if(root == NULL){
-        return root;
-    }else if(data < root->info){
-        root->left = Delete(root->left, data);
-    }else if(data > root->info){
-        root->right = Delete(root->right, data);
-    }else{
-        //case
-        if(root->left == NULL || root->right==NULL){
-            
-            address *temp = NULL;
-            
-=======
 address *remove(address *root, char *data){
     
     if(root == NULL){
@@ -185,47 +143,25 @@ address *remove(address *root, char *data){
     }else{
         if(root->left == NULL || root->right==NULL){
             address *temp = NULL;
->>>>>>> ed13747 (konversi ke dalam string)
             if(root->left==NULL){
                 temp = root->right;
             }else{
                 temp = root->left;
             }
-<<<<<<< HEAD
-
-
-            if(temp == NULL){
-                // case 1
-                temp = root;
-                root = NULL;
-            }else{
-                //case 2 & 3
-=======
             if(temp == NULL){
                 temp = root;
                 root = NULL;
             }else{
->>>>>>> ed13747 (konversi ke dalam string)
                 *root = *temp;
             }
             free(temp);
 
         }else{
-<<<<<<< HEAD
-            // case 4
-            address *temp;
-            temp = Predecessor(root->left);
-            root->info = temp->info;
-            root->left = Delete(root->left, temp->info);
-        }
-        
-=======
             address *temp;
             temp = Predecessor(root->left);
             strcpy(root->info,temp->info);
             root->left = remove(root->left, temp->info);
         }
->>>>>>> ed13747 (konversi ke dalam string)
     }
     if (root == NULL){
         return root;
@@ -233,20 +169,11 @@ address *remove(address *root, char *data){
     return rotate(root);
 }
 
-<<<<<<< HEAD
-void print(address *root){
-
-    if(root != NULL){
-        print(root->left);
-        printf("%d ", root->info);
-        print(root->right);
-=======
 void postPrint(address *root){
     if(root != NULL){
         postPrint(root->left);
         printf("%s ", root->info);
         postPrint(root->right);
->>>>>>> ed13747 (konversi ke dalam string)
     }
 }
 
@@ -261,35 +188,6 @@ void deleteBinaryTree(address *root)
     root = NULL;
 }
 
-<<<<<<< HEAD
-int main ()
-{
-    int info;
-    address *root = NULL;
-
-    while (1){
-        system("clear");
-        printf("angka: ");
-        scanf("%d", &info);
-        if(info == 0){
-            break;
-        }else{
-            root = InsertAVL(root, info);
-        }
-        getch();
-    }
-    system("clear");
-    printf("output    : ");
-    print(root); 
-    
-    Delete(root, 7);
-    printf("\ndelete 7  : ");
-    print(root);
-    
-    getch();
-    deleteBinaryTree(root);
-    return 0;
-=======
 char *input(char karakter[25]){
     system("cls");
     char ch;
@@ -361,5 +259,4 @@ int main ()
 	// dealoc
 	deleteBinaryTree(root);
 	return 0;
->>>>>>> ed13747 (konversi ke dalam string)
 }
