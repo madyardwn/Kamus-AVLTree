@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=mainwindos.cpp
+FileName=..\kamus\main.cpp
 CompileCpp=1
 Folder=
 Compile=1
