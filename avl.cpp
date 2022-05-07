@@ -1,4 +1,14 @@
+/*
+    POLITEKNIK NEGERI BANDUNG
+    D3 Teknik Informatika - 1A
+    Developer : 
+        - Achmadya Ridwan I 	(211511001)
+        - Wildan Setya Nugraha 	(211511032)
+    Program     : Kamus Bahasa Indonesia menggunakan AVL Tree
+------------------------------------------------------------- */
+
 #include "avl.h"
+
 
 int max(int a, int b){
     if(a > b){
@@ -18,80 +28,84 @@ int getBalanceFactor(address *root){
     if(root ==NULL){
         return 0;
     }
-    return (getHeight(root->left) - getHeight(root->right));
+    return (getHeight(root->LeftSon) - getHeight(root->RightSon));
 }
 
-address *alokasi(char *data){
+address *alokasi(char *dataKata, char *dataPenjelasanKata, char *dataKelasKata){
     address *P;
     
     P = (address *) malloc(sizeof(address));
     if(P == NULL){
         return 0;
     }
-    strcpy(P->info,data);
-    P->left = NULL;
-    P->right = NULL;
+    
+    strcpy(P->KataIndonesia, dataKata);
+    strcpy(P->PenjelasanKata, dataPenjelasanKata); 
+    strcpy(P->KelasKata, dataKelasKata); 
+    
+    P->LeftSon = NULL;
+    P->RightSon = NULL;
     P->height = 1;
 
     return P;
 }
 
 address *leftRotate(address *root){
-    address *newRoot = root->right;
-    address *temp = newRoot->left;
+    address *newRoot = root->RightSon;
+    address *temp = newRoot->LeftSon;
 
-    newRoot->left = root;
-    root->right = temp;
+    newRoot->LeftSon = root;
+    root->RightSon = temp;
 
-    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
-    newRoot->height = max(getHeight(newRoot->left), getHeight(newRoot->right)) + 1;
+    root->height = max(getHeight(root->LeftSon), getHeight(root->RightSon)) + 1;
+    newRoot->height = max(getHeight(newRoot->LeftSon), getHeight(newRoot->RightSon)) + 1;
 
     return newRoot;
 }
 
 address *rightRotate(address *root){
-    address *newRoot = root->left;
-    address *temp = newRoot->right;
+    address *newRoot = root->LeftSon;
+    address *temp = newRoot->RightSon;
 
-    newRoot->right = root;
-    root->left = temp;
+    newRoot->RightSon = root;
+    root->LeftSon = temp;
 
-    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
-    newRoot->height = max(getHeight(newRoot->left), getHeight(newRoot->right)) + 1;
+    root->height = max(getHeight(root->LeftSon), getHeight(root->RightSon)) + 1;
+    newRoot->height = max(getHeight(newRoot->LeftSon), getHeight(newRoot->RightSon)) + 1;
 
     return newRoot;
 }
 
 address *rotate(address *root){
     int bf;
-    root->height = max(getHeight(root->left), getHeight(root->right))+1;
+    root->height = max(getHeight(root->LeftSon), getHeight(root->RightSon))+1;
     bf = getBalanceFactor(root);
 
-    if(bf>1 && getBalanceFactor(root->left)>0){
+    if(bf>1 && getBalanceFactor(root->LeftSon)>0){
         root = rightRotate(root);
     }
-    else if(bf > 1 && getBalanceFactor(root->left) <= 0){
-        root->left = leftRotate(root->left);
+    else if(bf > 1 && getBalanceFactor(root->LeftSon) <= 0){
+        root->LeftSon = leftRotate(root->LeftSon);
         root = rightRotate(root);
     }
-    else if(bf < -1 && getBalanceFactor(root->right)<=0){
+    else if(bf < -1 && getBalanceFactor(root->RightSon)<=0){
         root = leftRotate(root);
     }
-    else if(bf < -1 && getBalanceFactor(root->right)>0){
-        root->right = rightRotate(root->right);
+    else if(bf < -1 && getBalanceFactor(root->RightSon)>0){
+        root->RightSon = rightRotate(root->RightSon);
         root = leftRotate(root);
     }
     return root;
 }
-address *InsertAVL(address *root, char *data){
+address *InsertAVL(address *root, char *dataKata, char *dataPenjelasanKata,  char *dataKelasKata){
     if(root == NULL){
-        root = alokasi(data);
+        root = alokasi(dataKata, dataPenjelasanKata, dataKelasKata);
         return root;
     }
-    if(strcmp(data, root->info) < 0){
-        root->left = InsertAVL(root->left, data);
-    }else if (strcmp(data, root->info) > 0){
-        root->right = InsertAVL(root->right, data);
+    if(strcmp(dataKata, root->KataIndonesia) < 0){
+        root->LeftSon = InsertAVL(root->LeftSon, dataKata, dataPenjelasanKata, dataKelasKata);
+    }else if (strcmp(dataKata, root->KataIndonesia) > 0){
+        root->RightSon = InsertAVL(root->RightSon, dataKata, dataPenjelasanKata, dataKelasKata);
     }else{
         printf(" sudah berada di dalam tree");
         getch();
@@ -106,8 +120,8 @@ address *Predecessor(address *root){
     address *current;
     
     current = root;
-    while (current->right != NULL){
-        current = current->right;
+    while (current->RightSon != NULL){
+        current = current->RightSon;
     }
     return current;
 }
@@ -116,27 +130,27 @@ address *Successor(address *root){
     address *current;
     
     current = root;
-    while (current->left != NULL){
-        current = current->left;
+    while (current->LeftSon != NULL){
+        current = current->LeftSon;
     }
     return current;
 }
 
-address *remove(address *root, char *data){
+address *remove(address *root,  char *dataKata){
     
     if(root == NULL){
         return root;
-    }else if(strcmp(data, root->info) < 0){
-        root->left = remove(root->left, data);
-    }else if(strcmp(data, root->info) > 0){
-        root->right = remove(root->right, data);
+    }else if(strcmp(dataKata, root->KataIndonesia) < 0){
+        root->LeftSon = remove(root->LeftSon, dataKata);
+    }else if(strcmp(dataKata, root->KataIndonesia) > 0){
+        root->RightSon = remove(root->RightSon, dataKata);
     }else{
-        if(root->left == NULL || root->right==NULL){
+        if(root->LeftSon == NULL || root->RightSon==NULL){
             address *temp = NULL;
-            if(root->left==NULL){
-                temp = root->right;
+            if(root->LeftSon==NULL){
+                temp = root->RightSon;
             }else{
-                temp = root->left;
+                temp = root->LeftSon;
             }
             if(temp == NULL){
                 temp = root;
@@ -148,9 +162,9 @@ address *remove(address *root, char *data){
 
         }else{
             address *temp;
-            temp = Predecessor(root->left);
-            strcpy(root->info,temp->info);
-            root->left = remove(root->left, temp->info);
+            temp = Predecessor(root->LeftSon);
+            strcpy(root->KataIndonesia, temp->KataIndonesia);
+            root->LeftSon = remove(root->LeftSon, temp->KataIndonesia);
         }
     }
     if (root == NULL){
@@ -161,19 +175,18 @@ address *remove(address *root, char *data){
 
 void postPrint(address *root){
     if(root != NULL){
-        postPrint(root->left);
-        printf("%s ", root->info);
-        postPrint(root->right);
+        postPrint(root->LeftSon);
+        printf("%s ", root->KataIndonesia); 
+        postPrint(root->RightSon);
     }
 }
-
 
 void deleteBinaryTree(address *root){
     if (root == NULL) {
         return;
     }
-    deleteBinaryTree(root->left);
-    deleteBinaryTree(root->right);
+    deleteBinaryTree(root->LeftSon);
+    deleteBinaryTree(root->RightSon);
     delete root;
     root = NULL;
 }
