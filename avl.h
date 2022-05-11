@@ -16,9 +16,9 @@
 #include <ctype.h>
 #include <conio.h>
 
-typedef struct node{
-    struct node *LeftSon;
-    struct node *RightSon;
+typedef struct InfoKataIndonesia{
+    struct InfoKataIndonesia *LeftSon;
+    struct InfoKataIndonesia *RightSon;
     char KataIndonesia[25];
     char PenjelasanKata[100];
     char KelasKata[10];
