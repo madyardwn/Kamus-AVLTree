@@ -9,11 +9,13 @@
 
 #include "tampilanUI.h"
 
-void mainMenu(address *root){
-	//kamus Data Lokal
-	char kata[25]; 
-	int pilihMenu; 
+bool mainMenu(address *root)
+{
+	/* kamus Data Lokal */
+	char kata[25];          // variable untuk menampung kata 
+	int pilihMenu;          // variable untuk menampung pilihan menu
 	
+    /* tampilan menu */
 	printf("\n\n\t================================\n");
 	printf("\n\t\t  MAIN MENU\n\n");
 	printf(" \t================================\n\n");
@@ -24,45 +26,60 @@ void mainMenu(address *root){
 	printf("                 [5] Exit     \n\n");
 	printf("                Pilih Menu : ");
 		
-	//Memilih Main Menu
-	scanf("%d", &pilihMenu); 
-	switch(pilihMenu){
+	/* Memilih Menu */
+	scanf("%d", &pilihMenu);
+	fflush(stdin);
+	switch(pilihMenu)
+	{
 		case 1:
-			root = tambahDataKata(root);
-			break;
+        {
+            root = tambahDataKata(root);
+            break;	
+        }
+
 		case 2:
-			temukanDataKata(root, input(kata));
-			break;
+        {
+            temukanDataKata(root, input(kata));
+            break;	
+        }
+
 		case 3:
-			hapusDataKata(root, input(kata));
-			break;
+        {
+            hapusDataKata(root, input(kata));
+            break;	
+        }
+
 		case 4:
-			printBerdasarkanKelasKata(root);
-			system("pause");
-			break;
+        {
+            printBerdasarkanKelasKata(root);
+            system("pause");
+            break;
+        }
+
 		case 5:
-			exit(0); 
-			break;
+        {
+            return false;
+            break;
+        }
+
 		default:
-			break;
-	} 
+        {
+            break;
+        }
+	}
+	return true;
 }
 
 
-void gotoxy(int x, int y){
-	//Kamus Data Lokal
-	//Tipe data komposit koordinat
-	COORD coord;
+void gotoxy(int x, int y)
+{
+	/* Kamus Data Lokal */
+	COORD coord;            // Tipe data komposit koordinat
 	
-	//Proses mengisi untuk menentukan posisi baru kursor 
+	/* Proses mengisi untuk menentukan posisi baru kursor */
 	coord.X = x;
 	coord.Y = y;
 	
-	//Proses mengatur posisi kursor
+	/* Proses mengatur posisi kursor */
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
-
-
-
-
-

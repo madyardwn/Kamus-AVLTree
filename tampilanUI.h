@@ -11,7 +11,7 @@
 
 #include "fiturKamus.h"
 
-void mainMenu(address *root);
+bool mainMenu(address *root);
 void gotoxy(int x, int y);
 
 #endif

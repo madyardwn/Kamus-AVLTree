@@ -11,40 +11,53 @@
 #include "fiturKamus.h"
 
 /*---------------------------------*/
-address *bukaFile (address *root){
-	//Kamus Data Lokal 
-	FILE *bukaFile;
-	char kata[25];
-	char penjelasan[100];
-	char kelasKata[4];
+address *bukaFile (address *root)
+{
+	/* Kamus Data Lokal */
+	FILE *bukaFile;             // variable untuk menampung file
+	char kata[25];              // variable untuk menampung kata
+	char penjelasan[100];       // variable untuk menampung penjelasan
+	char kelasKata[4];          // variable untuk menampung kelas kata
 	
-	//Proses buka file database kamus bahasa Indonesia
+    /* Algortima */
+
+	/* Proses buka file database kamus bahasa Indonesia */
 	bukaFile = (fopen("fileDataKamus.txt", "r"));
 	
-	//Cek Apakah file database tersebut ada atau tidak
-	if(!bukaFile){
+	/* Cek Apakah file database tersebut ada atau tidak */
+	if(!bukaFile)
+	{
 		printf("FILE TIDAK ADA, TENANG FILE DATA KAMUS AKAN DIBUATKAN OTOMATIS\n");
 		system("pause"); 
 		return NULL; 
-		
-	}else {  //Jika ada maka baca isinya lalu insert ke dalam AVL Tree
-	
-		while(!feof(bukaFile)){   
-			
+	}
+
+	else 
+	{  
+        /* Jika ada maka baca isinya lalu insert ke dalam AVL Tree */
+		while(!feof(bukaFile))
+		{   
 			fscanf(bukaFile, "%[^;];%[^;];%s\n", kata, penjelasan, kelasKata); 
 			
-			//Proses insert ke dalam AVL Tree sesuai dengan kelas katanya
-			if(strcmp(kelasKata, "adj") == 0){
+			/* Proses insert ke dalam AVL Tree sesuai dengan kelas katanya */
+			if(strcmp(kelasKata, "adj") == 0)
+			{
 				root = InsertAVL(root, kata, penjelasan, "adj");
-				
-			}else if(strcmp(kelasKata, "adv") == 0){
+			}
+
+			else if(strcmp(kelasKata, "adv") == 0)
+			{
 				root = InsertAVL(root, kata, penjelasan, "adv");
-				
-			}else if(strcmp(kelasKata, "n") == 0){
-				root = InsertAVL(root, kata, penjelasan, "n");
-				
-			}else if(strcmp(kelasKata, "v") == 0){
-				root = InsertAVL(root, kata, penjelasan, "v"); 
+			}
+
+			else if(strcmp(kelasKata, "n") == 0)
+			{
+				root = InsertAVL(root, kata, penjelasan, "n");	
+			}
+            
+			else if(strcmp(kelasKata, "v") == 0)
+			{
+				root = InsertAVL(root, kata, penjelasan, "v");
 			}
 		}
 	}
@@ -53,33 +66,37 @@ address *bukaFile (address *root){
 }
 
 /*---------------------------------*/
-address *tambahDataKata(address *root){
-	//Kamus Data Lokal
-	char kata[25];
-	char penjelasan[100];
-	char *kelasKata;
-	char dataOk;
-	bool kelasKataValid;
-	int pilihKelasKata;
-	
-	
-	//Proses Inputan Data Kata
-	do{
+address *tambahDataKata(address *root)
+{
+	/* Kamus Data Lokal */
+	char kata[25];                  // variable untuk menampung kata
+	char *kelasKata;                // variable untuk menampung kelas kata
+    char penjelasan[100];           // variable untuk menampung penjelasan
+	char dataOk;                    // variable untuk konfirmasi
+	bool kelasKataValid;            // variable untuk memvalidasi kata yang diinput
+	int pilihKelasKata;             // variable untuk memilih kelas kata
+		
+    /* Algortima */
+
+	/* Proses Inputan Data Kata */
+	do
+	{
 		system("cls");
 		
-		//Input Kata Indonesia
+		/* Input Kata Indonesia */
 		printf("Kata       : ");
 		input(kata);
 		fflush(stdin);
 		
-		//Input Penjelasan dari katanya
+		/* Input Penjelasan dari katanya */
 		printf("\nPenjelasan : ");
 		gets(penjelasan);
 		fflush(stdin);
 		
-		//Inputan untuk menentukan kata tersebut masuk ke dalam kelas kata apa
+		/* Inputan untuk menentukan kata tersebut masuk ke dalam kelas kata apa */
 		kelasKataValid = false;
-		while(kelasKataValid == false){
+		while(kelasKataValid == false)
+		{
 			printf("1. Adjektiva (Adj)\n");
 			printf("2. Adverbia (Adv)\n");
 			printf("3. Nomina (N)\n");
@@ -87,75 +104,103 @@ address *tambahDataKata(address *root){
 			printf("Pilih Kelas Kata : ");
 			scanf("%d", &pilihKelasKata);
 			
-			switch(pilihKelasKata){
+			switch(pilihKelasKata)
+			{
 				case 1 :
-					kelasKata = "adj";
-					kelasKataValid = true;
-					break;
+                {
+                    kelasKata = "adj";
+                    kelasKataValid = true;
+                    break;
+                }
+
 				case 2 :
-					kelasKata = "adv";
-					kelasKataValid = true;
-					break;	
+                {
+                    kelasKata = "adv";
+                    kelasKataValid = true;
+                    break;
+                }	
+
 				case 3 :
-					kelasKata = "n";
-					kelasKataValid = true;
-					break;		
-				case 4 :
-					kelasKata = "v";
-					kelasKataValid = true;
-					break;	
+                {
+                    kelasKata = "n";
+                    kelasKataValid = true;
+                    break;
+                }
+
+                case 4 :
+                {
+                    kelasKata = "v";
+                    kelasKataValid = true;
+                    break;
+                }	
+
 				default :
-					break;
+                {
+                    break;
+                }
 			}
 		}
 		
-		//Print Data hasil Inputan sementara apakah sudah ok
+		/* Print Data hasil Inputan sementara apakah sudah ok */
 		system("cls");
 		printf("KATA         : %s\n", kata);
 		printf("PENJELASAN   : %s\n", penjelasan);
 		printf("KELAS KATA   : %s\n", kelasKata); 
 		
-		//Input apakah data sudah benar
+		/* Input apakah data sudah benar */
 		printf("DATA OK ? (y/n) ");
 		dataOk = getch();
 		
-	} while (dataOk == 'T' || dataOk == 't');
+	}while(dataOk == 'T' || dataOk == 't');
 	
-	//Proses Insert ke dalam AVL Tree
+	/* Proses Insert ke dalam AVL Tree */
 	root = InsertAVL(root, kata, penjelasan, kelasKata); 
 	simpanKeFile(root);
 	return root;
 }
 
-void temukanDataKata(address *root, char *dataKata){
-	//Kamus Data Lokal
+void temukanDataKata(address *root, char *dataKata)
+{
+	/* Kamus Data Lokal */
 	bool kataKetemu;
 	
-	//Proses pencarian kata 
+    /* Algortima */
+
+	/* Proses pencarian kata */
 	kataKetemu = false;
-	while(kataKetemu == false){
-		
-		if(root == NULL){ 
-			break;
-		
-		//Jika kata yang dicari dan kata yang ada di AVL Tree sama	
-		}else if(strcmp(dataKata, root->KataIndonesia) == 0){
+	while(kataKetemu == false)
+	{
+        /* Jika Tree belum terbentuk */
+		if(root == NULL)
+		{ 
+			break;	
+		}
+
+		/* Jika kata yang dicari dan kata yang ada di AVL Tree sama	*/
+		else if(strcmp(dataKata, root->KataIndonesia) == 0)
+		{
 			printf("\nKata         : %s\n", root->KataIndonesia);
 			printf("Penjelasan   : %s\n", root->PenjelasanKata);
 			printf("Kelas Kata   : %s\n", root->KelasKata);
 			kataKetemu = true;
-			
-		//Jika kata yang dicari dengan kata yang ada di AVL Tree lebih kecil jumlah ASCII-nya 
-		} else if (strcmp(dataKata, root->KataIndonesia) < 0){
+		} 
+		
+        /*Jika kata yang dicari dengan kata yang ada di AVL Tree lebih kecil jumlah ASCII-nya */
+		else if (strcmp(dataKata, root->KataIndonesia) < 0)
+		{
 			root = root->LeftSon;
 		
-		//Jika kata yang dicari dengan kata yang ada di AVL Tree lebih besar jumlah ASCII-nya
-		} else if (strcmp(dataKata, root->KataIndonesia) > 0){
+		}
+		
+        /* Jika kata yang dicari dengan kata yang ada di AVL Tree lebih besar jumlah ASCII-nya */
+		else if (strcmp(dataKata, root->KataIndonesia) > 0)
+		{
 			root = root->RightSon;
 		}
 	}
 	
-	if(kataKetemu == false){
+	if(kataKetemu == false)
+	{
 		printf("\nKata %s Tidak Tersedia Di DataBase\n", dataKata);
 	}
 	
@@ -163,41 +208,56 @@ void temukanDataKata(address *root, char *dataKata){
 }
 
 /*---------------------------------*/
-bool isKataTersedia(address *root, char *dataKata){
-	//Kamus Data Lokal
+bool isKataTersedia(address *root, char *dataKata)
+{
+	/* Kamus Data Lokal */
 	bool kataKetemu;
 	
-	//Proses pencarian kata 
+    /* Algortima */
+
+	/* Proses pencarian kata */
 	kataKetemu = false;
-	while(kataKetemu == false){
-		
-		if(root == NULL){ 
+	while(kataKetemu == false)
+	{
+		if(root == NULL)
+		{ 
 			break;
+		}
 		
-		//Jika kata yang dicari dan kata yang ada di AVL Tree sama	
-		}else if(strcmp(dataKata, root->KataIndonesia) == 0){
+        /* Jika kata yang dicari dan kata yang ada di AVL Tree sama	*/
+		else if(strcmp(dataKata, root->KataIndonesia) == 0)
+		{
 			kataKetemu = true;
-			
-		//Jika kata yang dicari dengan kata yang ada di AVL Tree lebih kecil jumlah ASCII-nya 
-		} else if (strcmp(dataKata, root->KataIndonesia) < 0){
+		}
+
+		/* Jika kata yang dicari dengan kata yang ada di AVL Tree lebih kecil jumlah ASCII-nya */
+		else if (strcmp(dataKata, root->KataIndonesia) < 0)
+		{
 			root = root->LeftSon;
-		
-		//Jika kata yang dicari dengan kata yang ada di AVL Tree lebih besar jumlah ASCII-nya
-		} else if (strcmp(dataKata, root->KataIndonesia) > 0){
+		}
+
+		/* Jika kata yang dicari dengan kata yang ada di AVL Tree lebih besar jumlah ASCII-nya */
+		else if (strcmp(dataKata, root->KataIndonesia) > 0)
+		{
 			root = root->RightSon;
 		}
 	}
 	return kataKetemu; 
 }
-
 /*---------------------------------*/
 
 
 /*---------------------------------*/
-void hapusDataKata(address *root, char *dataKata){
-	if(isKataTersedia(root, dataKata) && root!=NULL){
+void hapusDataKata(address *root, char *dataKata)
+{
+    /* Algortima */
+
+	if(isKataTersedia(root, dataKata) && root!=NULL)
+	{
 		root = remove(root, dataKata);
-	} else {
+	}
+	else
+	{
 		printf("\nKata %s Tidak Tersedia\n", dataKata);
 		system("pause");
 	}
@@ -205,25 +265,34 @@ void hapusDataKata(address *root, char *dataKata){
 }
 
 /*---------------------------------*/
-void cariBerdasarkanKelasKata(address *root, char *dataKelasKata){
-	if(root!=NULL){
+void cariBerdasarkanKelasKata(address *root, char *dataKelasKata)
+{
+    /* Algortima */
+
+	if(root!=NULL)
+	{
 		cariBerdasarkanKelasKata(root->LeftSon, dataKelasKata);
-		if(strcmp(dataKelasKata, root->KelasKata) == 0){ 
+		if(strcmp(dataKelasKata, root->KelasKata) == 0)
+		{ 
 			printf("%s \n", root->KataIndonesia); 
 		} 
 		cariBerdasarkanKelasKata(root->RightSon, dataKelasKata);
 	}
 }
 
-void printBerdasarkanKelasKata(address *root){
-	//Kamus Data Lokal
-	int pilihKelasKata;
-	char *kelasKata;
+void printBerdasarkanKelasKata(address *root)
+{
+	/* Kamus Data Lokal */
+	int pilihKelasKata;                 // variable untuk menampung pilihan kelas kata
+	char *kelasKata;                    
 	bool kelasKataValid;
 	
-	//Memilih Kelas Kata yang ingin dicari
+    /* Algortima */
+
+	/* Memilih Kelas Kata yang ingin dicari */
 	kelasKataValid = false;
-	while(kelasKataValid == false){
+	while(kelasKataValid == false)
+	{
 		printf("1. Adjektiva (Adj)\n");
 		printf("2. Adverbia (Adv)\n");
 		printf("3. Nomina (N)\n");
@@ -231,67 +300,72 @@ void printBerdasarkanKelasKata(address *root){
 		printf("Pilih Kelas Kata : ");
 		scanf("%d", &pilihKelasKata);
 		
-		switch(pilihKelasKata){
+		switch(pilihKelasKata)
+		{
 			case 1:
-				kelasKata = "adj"; 
+            {
+                kelasKata = "adj"; 
 				kelasKataValid = true;
 				break;
+            }
+				
 			case 2:
+            {
 				kelasKata = "adv";
 				kelasKataValid = true;
 				break;
+            }
+
 			case 3:
+            {
 				kelasKata = "n";
 				kelasKataValid = true;
 				break;
+            }
+
 			case 4:
+            {
 				kelasKata = "v";
 				kelasKataValid = true;
 				break;
+            }
+
 			default:
-		
-				break; 
+            {
+                break;
+            }
 		}
 	}
 	
-	//Proses pencarian kata lalu print kata ke layar sesuai dengan kelas katanya
+	/* Proses pencarian kata lalu print kata ke layar sesuai dengan kelas katanya */
 	cariBerdasarkanKelasKata(root, kelasKata); 
 }
 
 /*--------------------------------------------------------------------------------------SAVE DATA KE DALAM FILE-----------------------------------------------------------------------------------*/
-void tulisKeFile(FILE *file, address *root){
-	//Proses menulis data kata ke dalam File berdasarkan postOrder
-	if(root!=NULL){
+void tulisKeFile(FILE *file, address *root)
+{
+    /* Algortima */
+
+	/* Proses menulis data kata ke dalam File berdasarkan postOrder */
+	if(root!=NULL)
+	{
 		tulisKeFile(file, root->LeftSon);
 		fprintf(file, "%s;%s;%s\n", root->KataIndonesia, root->PenjelasanKata, root->KelasKata);
 		tulisKeFile(file, root->RightSon);	 
 	}
 }
 
-void simpanKeFile(address *root){
-	//Kamus Data Lokal
+void simpanKeFile(address *root)
+{
+	/* Kamus Data Lokal */
 	FILE *filePenyimpanan;
 	
-	//Proses membuka dan menulis data ke dalam file penyimpanan
+    /* Algortima */
+
+	/* Proses membuka dan menulis data ke dalam file penyimpanan */
 	filePenyimpanan = fopen("fileDataKamus.txt", "w");
 	tulisKeFile(filePenyimpanan, root); 
 	
-	//Menutup file penyimpanan
+	/* Menutup file penyimpanan */
 	fclose(filePenyimpanan);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

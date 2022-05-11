@@ -37,7 +37,7 @@ address *InsertAVL(address *root,  char *dataKata, char *dataPenjelasanKata, cha
 address *Predecessor(address *root);
 address *Successor(address *root);
 address *remove(address *root,  char *dataKata);
-void postPrint(address *root);
+void InPrint(address *root);
 void deleteBinaryTree(address *root);
 char *input(char karakter[25]);
 

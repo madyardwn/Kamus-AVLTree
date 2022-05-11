@@ -11,21 +11,25 @@
 #include "fiturKamus.h"
 #include "avl.h"
 
-int main(){
-	
-	//Kamus data
-	address *root = NULL;
+int main()
+{
+	/* Kamus data */
+	bool run = true;        // variable untuk menjalankan menu
+	address *root = NULL;   // root pada tree dan diinisialisasi NULL
 
 	
-	//Buka dan baca isi file
+	/* Buka dan baca isi file */
 	root = bukaFile(root); 
 	
-	//Masuk ke main menu
-	while(1){
+	/* Masuk ke main menu */
+	while(run)
+	{
 		system("cls");
-		mainMenu(root);
+		run = mainMenu(root);
 	}
 	
+	/* Menghapus tree setelah tidak digunakan */
+	deleteBinaryTree(root);
 	
 	return 0;
 }
