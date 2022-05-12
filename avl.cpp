@@ -329,7 +329,7 @@ void deleteBinaryTree(address *root)
     root = NULL;
 }
 
-char *input(char karakter[25])
+char *inputKata(char karakter[25])
 {
     /* Kamus Data Lokal*/
     char ch;                        // variable penampung input karakter
@@ -369,6 +369,63 @@ char *input(char karakter[25])
 		{
             /* Jika batas karakter yang dinput sama dengan 25 tidak dapat menginput lagi */
         	if(strlen(karakter)>=24)
+			{
+            	continue;
+			}
+
+            /* Mengimput */
+            karakter[array] = ch;
+            karakter[array+1] = '\0';
+            printf("%c", karakter[array]);
+            array = array + 1;
+        }
+    }
+    
+    /* return NULL di ujung array */
+    karakter[array] = '\0';
+    return karakter;
+}
+
+char *inputPenjelasan(char karakter[100])
+{
+    /* Kamus Data Lokal*/
+    char ch;                        // variable penampung input karakter
+    int array = 0;                  // variable menampung data input
+    
+    /* Algoritma agar insert tidak melebihi batas (25 karakter )*/
+    memset(karakter, 0, 1);
+    while(1)
+	{
+        /* Pengaturan agar karakter seragam (huruf kecil) */
+        ch = tolower(getch());
+
+        /* Jika menekan enter selesai */
+        if(ch == 13 || ch == 10)
+		{
+            break;
+        }
+
+        /* Jika menekan backspace mengahapus karakter */
+        else if(ch == 8 || ch == 127)
+		{
+            /* Jika line berada di line awal pengahpusan tidak bekerja */
+            if(array <= 0)
+			{
+                continue;
+            }
+			
+            else
+			{
+                printf("\b \b");
+                karakter[array-1] = '\0';
+                array--;
+            }
+        }
+		
+        else
+		{
+            /* Jika batas karakter yang dinput sama dengan 100 tidak dapat menginput lagi */
+        	if(strlen(karakter)>=99)
 			{
             	continue;
 			}

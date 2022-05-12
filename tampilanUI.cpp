@@ -8,6 +8,8 @@
 ------------------------------------------------------------- */
 
 #include "tampilanUI.h"
+#include <cstdio>
+#include <cstdlib>
 
 bool mainMenu(address *root)
 {
@@ -39,13 +41,15 @@ bool mainMenu(address *root)
 
 		case 2:
         {
-            temukanDataKata(root, input(kata));
+            printf("Kata yang ingin dicari : ");
+            temukanDataKata(root, inputKata(kata));
             break;	
         }
 
 		case 3:
         {
-            hapusDataKata(root, input(kata));
+            printf("Kata yang ingin dihapus : ");
+            hapusDataKata(root, inputKata(kata));
             break;	
         }
 
@@ -64,6 +68,8 @@ bool mainMenu(address *root)
 
 		default:
         {
+            printf("Inputan salah\n");
+            system("pause");
             break;
         }
 	}

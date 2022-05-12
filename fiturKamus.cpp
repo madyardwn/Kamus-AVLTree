@@ -7,6 +7,9 @@
     Program     : Kamus Bahasa Indonesia menggunakan AVL Tree
 ------------------------------------------------------------- */
 
+#include "avl.h"
+#include <cstdio>
+#include <cstdlib>
 #pragma GCC diagnostic ignored "-Wwrite-strings" //Mengabaikan 
 #include "fiturKamus.h"
 
@@ -38,28 +41,8 @@ address *bukaFile (address *root)
 		while(!feof(bukaFile))
 		{   
 			fscanf(bukaFile, "%[^;];%[^;];%s\n", kata, penjelasan, kelasKata); 
-			
-			/* Proses insert ke dalam AVL Tree sesuai dengan kelas katanya */
-			if(strcmp(kelasKata, "adj") == 0)
-			{
-				root = InsertAVL(root, kata, penjelasan, "adj");
-			}
-
-			else if(strcmp(kelasKata, "adv") == 0)
-			{
-				root = InsertAVL(root, kata, penjelasan, "adv");
-			}
-
-			else if(strcmp(kelasKata, "n") == 0)
-			{
-				root = InsertAVL(root, kata, penjelasan, "n");	
-			}
-            
-			else if(strcmp(kelasKata, "v") == 0)
-			{
-				root = InsertAVL(root, kata, penjelasan, "v");
-			}
-		}
+            root = InsertAVL(root, kata, penjelasan, kelasKata);
+        }
 	}
 	fclose(bukaFile);
 	return root;
@@ -85,19 +68,19 @@ address *tambahDataKata(address *root)
 		
 		/* Input Kata Indonesia */
 		printf("Kata       : ");
-		input(kata);
+		inputKata(kata);
 		fflush(stdin);
 		
 		/* Input Penjelasan dari katanya */
 		printf("\nPenjelasan : ");
-		gets(penjelasan);
+        inputPenjelasan(penjelasan);
 		fflush(stdin);
 		
 		/* Inputan untuk menentukan kata tersebut masuk ke dalam kelas kata apa */
 		kelasKataValid = false;
 		while(kelasKataValid == false)
 		{
-			printf("1. Adjektiva (Adj)\n");
+			printf("\n1. Adjektiva (Adj)\n");
 			printf("2. Adverbia (Adv)\n");
 			printf("3. Nomina (N)\n");
 			printf("4. Verba (V)\n");
@@ -136,6 +119,8 @@ address *tambahDataKata(address *root)
 
 				default :
                 {
+                    printf("Inputan salah\n");
+                    system("pause");
                     break;
                 }
 			}
@@ -148,7 +133,7 @@ address *tambahDataKata(address *root)
 		printf("KELAS KATA   : %s\n", kelasKata); 
 		
 		/* Input apakah data sudah benar */
-		printf("DATA OK ? (y/n) ");
+		printf("DATA OK ? (tekan T/t untuk revisi) ");
 		dataOk = getch();
 		
 	}while(dataOk == 'T' || dataOk == 't');
@@ -255,6 +240,8 @@ void hapusDataKata(address *root, char *dataKata)
 	if(isKataTersedia(root, dataKata) && root!=NULL)
 	{
 		root = remove(root, dataKata);
+        printf("\nData berhasil dihapus\n");
+		system("pause");
 	}
 	else
 	{
@@ -333,6 +320,8 @@ void printBerdasarkanKelasKata(address *root)
 
 			default:
             {
+                printf("Inputan salah\n");
+                system("pause");
                 break;
             }
 		}

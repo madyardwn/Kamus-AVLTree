@@ -21,7 +21,7 @@ typedef struct InfoKataIndonesia{
     struct InfoKataIndonesia *RightSon;
     char KataIndonesia[25];
     char PenjelasanKata[100];
-    char KelasKata[10];
+    char KelasKata[4];
     int height;
 }address;
 
@@ -39,7 +39,7 @@ address *Successor(address *root);
 address *remove(address *root,  char *dataKata);
 void InPrint(address *root);
 void deleteBinaryTree(address *root);
-char *input(char karakter[25]);
-
+char *inputKata(char karakter[25]);
+char *inputPenjelasan(char karakter[100]);
 
 #endif 
