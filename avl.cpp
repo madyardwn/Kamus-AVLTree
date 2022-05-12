@@ -8,16 +8,16 @@
 ------------------------------------------------------------- */
 #include "avl.h"
 
-int max(int a, int b)
+int max(int data1, int data2)
 {
     /* Algoritma */
 
-    if(a > b)
+    if(data1 > data2)
     {
-        return a;
+        return data1;
     }
     
-    return b;
+    return data2;
 }
 
 int getHeight(address *root)
@@ -51,28 +51,28 @@ int getBalanceFactor(address *root)
 address *alokasi(char *dataKata, char *dataPenjelasanKata, char *dataKelasKata)
 {
     /* Kamus Data Lokal*/
-    address *P;
+    address *node;              // variable penampung untuk mengalokasi node
     
     /* Algoritma */
 
     /* Memesan memori */
-    P = (address *) malloc(sizeof(address));
-    if(P == NULL)
+    node = (address *) malloc(sizeof(address));
+    if(node == NULL)
 	{
         return 0;
     }
     
     /* Mengisi memori yang sudah dipesan sebelumya dengan data */
-    strcpy(P->KataIndonesia, dataKata);
-    strcpy(P->PenjelasanKata, dataPenjelasanKata); 
-    strcpy(P->KelasKata, dataKelasKata); 
+    strcpy(node->KataIndonesia, dataKata);
+    strcpy(node->PenjelasanKata, dataPenjelasanKata); 
+    strcpy(node->KelasKata, dataKelasKata); 
     
     /* Inisialisasi penunjuk dan tinggi node */
-    P->LeftSon = NULL;
-    P->RightSon = NULL;
-    P->height = 1;
+    node->LeftSon = NULL;
+    node->RightSon = NULL;
+    node->height = 1;
 
-    return P;
+    return node;
 }
 
 address *leftRotate(address *root)
@@ -117,7 +117,7 @@ address *rightRotate(address *root)
 address *rotate(address *root)
 {
     /* Kamus Data Lokal */
-    int bf;
+    int bf;                     // balance factor
 
     /* Algoritma */
 
@@ -332,8 +332,8 @@ void deleteBinaryTree(address *root)
 char *input(char karakter[25])
 {
     /* Kamus Data Lokal*/
-    char ch;
-    int i = 0;
+    char ch;                        // variable penampung input karakter
+    int array = 0;                  // variable menampung data input
     
     /* Algoritma agar insert tidak melebihi batas (25 karakter )*/
     memset(karakter, 0, 1);
@@ -352,7 +352,7 @@ char *input(char karakter[25])
         else if(ch == 8 || ch == 127)
 		{
             /* Jika line berada di line awal pengahpusan tidak bekerja */
-            if(i <= 0)
+            if(array <= 0)
 			{
                 continue;
             }
@@ -360,8 +360,8 @@ char *input(char karakter[25])
             else
 			{
                 printf("\b \b");
-                karakter[i-1] = '\0';
-                i--;
+                karakter[array-1] = '\0';
+                array--;
             }
         }
 		
@@ -374,14 +374,14 @@ char *input(char karakter[25])
 			}
 
             /* Mengimput */
-            karakter[i] = ch;
-            karakter[i+1] = '\0';
-            printf("%c", karakter[i]);
-            i = i + 1;
+            karakter[array] = ch;
+            karakter[array+1] = '\0';
+            printf("%c", karakter[array]);
+            array = array + 1;
         }
     }
     
     /* return NULL di ujung array */
-    karakter[i] = '\0';
+    karakter[array] = '\0';
     return karakter;
 }
