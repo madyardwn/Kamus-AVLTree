@@ -26,7 +26,7 @@ bool isKataTersedia(address *root, char *dataKata);
 
 void hapusDataKata(address *root, char *dataKata); 
 void printBerdasarkanKelasKata(address *root);
-void cariBerdasarkanKelasKata(address *root, char *dataKelasKata); 
+void cariBerdasarkanKelasKata(address *root, char *dataKelasKata, bool *cek); 
 void tulisKeFile(address *root); 
 void simpanKeFile(address *root); 
 

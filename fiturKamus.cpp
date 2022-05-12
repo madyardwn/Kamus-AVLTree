@@ -265,18 +265,19 @@ void hapusDataKata(address *root, char *dataKata)
 }
 
 /*---------------------------------*/
-void cariBerdasarkanKelasKata(address *root, char *dataKelasKata)
+void cariBerdasarkanKelasKata(address *root, char *dataKelasKata, bool *cek)
 {
     /* Algortima */
 
 	if(root!=NULL)
 	{
-		cariBerdasarkanKelasKata(root->LeftSon, dataKelasKata);
+		cariBerdasarkanKelasKata(root->LeftSon, dataKelasKata, &(*cek));
 		if(strcmp(dataKelasKata, root->KelasKata) == 0)
-		{ 
-			printf("%s \n", root->KataIndonesia); 
+		{
+			printf("%s \n", root->KataIndonesia);
+            *cek = true;
 		} 
-		cariBerdasarkanKelasKata(root->RightSon, dataKelasKata);
+		cariBerdasarkanKelasKata(root->RightSon, dataKelasKata, &(*cek));
 	}
 }
 
@@ -286,7 +287,7 @@ void printBerdasarkanKelasKata(address *root)
 	int pilihKelasKata;                 // variable untuk menampung pilihan kelas kata
 	char *kelasKata;                    
 	bool kelasKataValid;
-	
+	bool cek = false;
     /* Algortima */
 
 	/* Memilih Kelas Kata yang ingin dicari */
@@ -338,7 +339,11 @@ void printBerdasarkanKelasKata(address *root)
 	}
 	
 	/* Proses pencarian kata lalu print kata ke layar sesuai dengan kelas katanya */
-	cariBerdasarkanKelasKata(root, kelasKata); 
+	cariBerdasarkanKelasKata(root, kelasKata, &cek);
+    if(cek == false)
+    {
+        printf("Data kelas kata %s tidak tersedia\n", kelasKata);
+    }
 }
 
 /*--------------------------------------------------------------------------------------SAVE DATA KE DALAM FILE-----------------------------------------------------------------------------------*/
