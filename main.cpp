@@ -17,9 +17,11 @@ int main()
 	bool run = true;        // variable untuk menjalankan menu
 	address *root = NULL;   // root pada tree dan diinisialisasi NULL
 
-	
 	/* Buka dan baca isi file */
 	root = bukaFile(root); 
+	
+	/* Masuk ke tampilan awal */
+	boxTampilanAwal();
 	
 	/* Masuk ke main menu */
 	while(run)

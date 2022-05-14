@@ -13,5 +13,7 @@
 
 bool mainMenu(address *root);
 void gotoxy(int x, int y);
-
+void pilihanAwal();
+void boxTampilanAwal();
+void color(int color);
 #endif
