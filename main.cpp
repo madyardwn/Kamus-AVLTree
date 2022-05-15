@@ -27,6 +27,8 @@ int main()
 	while(run)
 	{
 		system("cls");
+		color(7);
+		boxTampilanMenu(); 
 		run = mainMenu(root);
 	}
 	

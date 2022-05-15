@@ -15,5 +15,8 @@ bool mainMenu(address *root);
 void gotoxy(int x, int y);
 void pilihanAwal();
 void boxTampilanAwal();
+void boxFileTidakTersedia(); 
+void boxTampilanMenu(); 
+int pilihanMainMenu(); 
 void color(int color);
 #endif

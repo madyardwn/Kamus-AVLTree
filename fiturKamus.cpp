@@ -30,8 +30,7 @@ address *bukaFile (address *root)
 	/* Cek Apakah file database tersebut ada atau tidak */
 	if(!bukaFile)
 	{
-		printf("FILE TIDAK ADA, TENANG FILE DATA KAMUS AKAN DIBUATKAN OTOMATIS\n");
-		system("pause"); 
+		boxFileTidakTersedia(); 
 		return NULL; 
 	}
 

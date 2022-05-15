@@ -17,13 +17,12 @@
 #include <unistd.h>
 
 #include "avl.h"
+#include "tampilanUI.h"
 
 address *bukaFile(address *root);
 address *tambahDataKata(address *root);
 void temukanDataKata(address *root, char *dataKata);
-
 bool isKataTersedia(address *root, char *dataKata); 
-
 void hapusDataKata(address *root, char *dataKata); 
 void printBerdasarkanKelasKata(address *root);
 void cariBerdasarkanKelasKata(address *root, char *dataKelasKata, bool *cek); 
