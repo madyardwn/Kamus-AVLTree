@@ -18,21 +18,20 @@ bool mainMenu(address *root)
 	
 	switch(pilihanMainMenu()){
 		case 1:
-			printf("1");
+			root = tambahDataKata(root); 
 			break;
 		case 2:
-			printf("2");
+			hapusDataKata(root); 
 			break;
 		case 3:
-			printf("3");
+			printBerdasarkanKelasKata(root); 
 			break;
 		case 59:
-			printf("59"); 
+			temukanDataKata(root);  
 			break;
 		default:
 			break;
 	}
-	system("pause");
 	return true; 
 }
 
@@ -186,17 +185,18 @@ void boxTampilanMenu()
 
 
 int pilihanMainMenu(){
+	/* Kamus Data Lokal */
 	int counter = 2;
 	int Set[] = {7,7,7};
 	char key;
 	
-	//Nav
+	/* Tampilan Nav */
 	gotoxy(11,16); printf("F1   : Pencarian kata ");
 	gotoxy(11,17); printf("UP   : Selection Menu ");
 	gotoxy(11,18); printf("DOWN	: Selection Menu "); 
-	gotoxy(39,3); printf("Pencarian kata : ");
+	gotoxy(39,3);  printf("Pencarian kata : ");
 	
-	//Tampilan Menu
+	/* Tampilan Main Menu*/
 	gotoxy(65,6); printf("  M A I N   M E N U");
 	gotoxy(65,7); printf("=====================");
 	
@@ -207,17 +207,18 @@ int pilihanMainMenu(){
 	
 		key = getch();
 		
-		if(key == 72 && counter >= 2 && counter <= 3)
+		if(key == 72 && counter >= 2 && counter <= 3) 		//Up Kursor
 		{
 			counter--;
 		}
 		
-		if(key == 80 && counter >= 1 && counter <= 2)
+		if(key == 80 && counter >= 1 && counter <= 2)		//Down Kursor
 		{
 			counter++;
 		}
 		
-		if(key == 59){
+		if(key == 59)										//Tombol F1
+		{			
 			counter = 59; 
 			break;  
 		}
@@ -246,6 +247,40 @@ int pilihanMainMenu(){
 		}
 	}
 	return counter; 
+}
+
+
+void boxTampilanKelasKata()
+{
+	system("cls");
+	gotoxy(10,2);  printf("\xDA\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xBF");
+	gotoxy(10,3);  printf("\xB3"); 																																																																							gotoxy(110,3);  printf("\xB3");
+	gotoxy(10,4);  printf("\xB3"); 																																																																							gotoxy(110,4);  printf("\xB3");
+	gotoxy(10,5);  printf("\xB3"); 																																																																							gotoxy(110,5);  printf("\xB3");
+	gotoxy(10,6);  printf("\xB3"); 																																																																							gotoxy(110,6);  printf("\xB3");
+	gotoxy(10,7);  printf("\xB3"); 																																																																							gotoxy(110,7);  printf("\xB3");
+	gotoxy(10,8);  printf("\xB3"); 																																																																							gotoxy(110,8);  printf("\xB3");
+	gotoxy(10,9);  printf("\xB3"); 																																																																							gotoxy(110,9);  printf("\xB3");
+	gotoxy(10,10); printf("\xB3"); 																																																																							gotoxy(110,10); printf("\xB3");
+	gotoxy(10,11); printf("\xB3"); 																																																																							gotoxy(110,11); printf("\xB3");
+	gotoxy(10,12); printf("\xB3"); 																																																																							gotoxy(110,12); printf("\xB3");
+	gotoxy(10,13); printf("\xB3"); 																																																																							gotoxy(110,13); printf("\xB3");
+	gotoxy(10,14); printf("\xB3"); 																																																																							gotoxy(110,14); printf("\xB3");
+	gotoxy(10,15); printf("\xB3"); 																																																																							gotoxy(110,15); printf("\xB3");
+	gotoxy(10,16); printf("\xB3"); 																																																																							gotoxy(110,16); printf("\xB3");
+	gotoxy(10,17); printf("\xB3"); 																																																																							gotoxy(110,17); printf("\xB3");
+	gotoxy(10,18); printf("\xB3"); 																																																																							gotoxy(110,18); printf("\xB3");
+	gotoxy(10,19); printf("\xB3"); 																																																																							gotoxy(110,19); printf("\xB3");
+	gotoxy(10,20); printf("\xB3"); 																																																																							gotoxy(110,20); printf("\xB3");
+	gotoxy(10,21); printf("\xB3"); 																																																																							gotoxy(110,21); printf("\xB3");
+	gotoxy(10,22); printf("\xB3"); 																																																																							gotoxy(110,22); printf("\xB3");
+	gotoxy(10,23); printf("\xB3"); 																																																																							gotoxy(110,23); printf("\xB3");
+	gotoxy(10,24); printf("\xC0\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xD9");
+		
+	gotoxy(10,25); printf("\xDA\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xBF");
+	gotoxy(10,26); printf("\xB3");	  																																																																						gotoxy(110,26); printf("\xB3");
+	gotoxy(10,27); printf("\xC0\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xD9");
+		
 }
 
 

@@ -7,6 +7,8 @@
     Program     : Kamus Bahasa Indonesia menggunakan AVL Tree
 ------------------------------------------------------------- */
 #include "avl.h"
+#include "tampilanUI.h"
+
 
 int max(int data1, int data2)
 {
@@ -409,11 +411,15 @@ char *inputPenjelasan(char karakter[100])
         else if(ch == 8 || ch == 127)
 		{
             /* Jika line berada di line awal pengahpusan tidak bekerja */
-            if(array <= 0)
+            if(array < 0)
 			{
                 continue;
             }
-			
+			else if(array == 54)
+			{
+				gotoxy(107,11);
+				array--; 
+			}
             else
 			{
                 printf("\b \b");
@@ -435,6 +441,11 @@ char *inputPenjelasan(char karakter[100])
             karakter[array+1] = '\0';
             printf("%c", karakter[array]);
             array = array + 1;
+            
+            if(array == 54)
+            {
+            	gotoxy(53,12);
+			}
         }
     }
     
@@ -442,3 +453,6 @@ char *inputPenjelasan(char karakter[100])
     karakter[array] = '\0';
     return karakter;
 }
+
+
+

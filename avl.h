@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <conio.h>
+#include <windows.h>
 
 typedef struct InfoKataIndonesia{
     struct InfoKataIndonesia *LeftSon;

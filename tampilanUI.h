@@ -16,7 +16,8 @@ void gotoxy(int x, int y);
 void pilihanAwal();
 void boxTampilanAwal();
 void boxFileTidakTersedia(); 
-void boxTampilanMenu(); 
+void boxTampilanMenu();
+void boxTampilanKelasKata();  
 int pilihanMainMenu(); 
 void color(int color);
 #endif

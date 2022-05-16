@@ -21,11 +21,11 @@
 
 address *bukaFile(address *root);
 address *tambahDataKata(address *root);
-void temukanDataKata(address *root, char *dataKata);
+void temukanDataKata(address *root);
 bool isKataTersedia(address *root, char *dataKata); 
-void hapusDataKata(address *root, char *dataKata); 
+void hapusDataKata(address *root); 
 void printBerdasarkanKelasKata(address *root);
-void cariBerdasarkanKelasKata(address *root, char *dataKelasKata, bool *cek); 
+void cariBerdasarkanKelasKata(address *root, char *dataKelasKata, bool *cek, int *kata, int *baris, int *kolom); 
 void tulisKeFile(address *root); 
 void simpanKeFile(address *root); 
 
