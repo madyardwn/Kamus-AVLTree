@@ -245,7 +245,7 @@ bool isKataTersedia(address *root, char *dataKata)
 		else if(strcmp(dataKata, root->KataIndonesia) == 0)
 		{
 			gotoxy(40,11); printf("kata         : %s", root->KataIndonesia);
-			gotoxy(40,13); printf("Penjelasan   : %s", root->PenjelasanKata);
+			printWrapPenjelasan(root->PenjelasanKata); 
 			gotoxy(40,16); printf("Kelas kata   : %s", root->KelasKata);
 			kataKetemu = true;
 		}
