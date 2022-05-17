@@ -109,7 +109,7 @@ void pilihanAwal()
 				break;
 				
 			} else {
-				
+				gotoxy(2,27);
 				exit(1);
 			}	
 		}
@@ -196,19 +196,20 @@ int pilihanMainMenu(){
 	char key;
 	
 	/* Tampilan Nav */
-	gotoxy(11,16); printf("F1   : Pencarian kata ");
-	gotoxy(11,17); printf("UP   : Selection Menu ");
-	gotoxy(11,18); printf("DOWN	: Selection Menu "); 
+	gotoxy(13,16); printf("F1   : Pencarian kata ");
+	gotoxy(13,17); printf("UP   : Selection Menu ");
+	gotoxy(13,18); printf("DOWN : Selection Menu "); 
 	gotoxy(39,3);  printf("Pencarian kata : ");
 	
 	/* Tampilan Main Menu*/
-	gotoxy(65,6); printf("  M A I N   M E N U");
-	gotoxy(65,7); printf("=====================");
+	gotoxy(65,6);  printf("  M A I N   M E N U");
+	gotoxy(65,7);  printf("=====================");
+	gotoxy(40,8);  printf("=====================================================================");
 	
 	while(1){
-		gotoxy(65,13); color(Set[0]); printf("[1.] Tambah Data"); 
-		gotoxy(65,14); color(Set[1]); printf("[2.] Hapus Data");
-		gotoxy(65,15); color(Set[2]); printf("[3.] Print Berdasarkan Kelas Kata");
+		gotoxy(69,11); color(Set[0]); printf("Tambah  Data"); 
+		gotoxy(69,13); color(Set[1]); printf(" Hapus Data");
+		gotoxy(62,15); color(Set[2]); printf("Print Berdasarkan Kelas Kata");
 	
 		key = getch();
 		
@@ -228,7 +229,7 @@ int pilihanMainMenu(){
 			break;  
 		}
 		
-		if(key == 27)
+		if(key == 27)										// Tombol ESC
 		{
 			counter = 27; 
 			break; 
