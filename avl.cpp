@@ -184,7 +184,8 @@ address *InsertAVL(address *root, char *dataKata, char *dataPenjelasanKata,  cha
     /* Jika nilai dataKata sama penyambungan di batalkan */
     else
     {
-        printf(" sudah berada di dalam tree");
+    	gotoxy(45,23); printf("                                          ");
+		gotoxy(38,23); printf("Ehh Ternyata data kata sudah tersedia, Gagal dehh..."); 
         getch();
         return root;
     }
@@ -339,8 +340,10 @@ char *inputKata(char karakter[25])
     
     /* Algoritma agar insert tidak melebihi batas (25 karakter )*/
     memset(karakter, 0, 1);
+    
     while(1)
 	{
+		
         /* Pengaturan agar karakter seragam (huruf kecil) */
         ch = tolower(getch());
 
@@ -417,7 +420,7 @@ char *inputPenjelasan(char karakter[100])
             }
 			else if(array == 54)
 			{
-				gotoxy(107,11);
+				gotoxy(106,11);
 				array--; 
 			}
             else
@@ -444,7 +447,7 @@ char *inputPenjelasan(char karakter[100])
             
             if(array == 54)
             {
-            	gotoxy(53,12);
+            	gotoxy(52,12);
 			}
         }
     }

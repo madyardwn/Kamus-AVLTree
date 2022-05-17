@@ -28,7 +28,7 @@ int main()
 	{
 		system("cls");
 		color(7);
-		boxTampilanMenu(); 
+		boxTampilanMenu();
 		run = mainMenu(root);
 	}
 	

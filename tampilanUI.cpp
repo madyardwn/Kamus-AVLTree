@@ -284,6 +284,32 @@ void boxTampilanKelasKata()
 }
 
 
+void printWrapPenjelasan(char karakter[100])
+{
+	/* Kamus Data Lokal*/
+    int array = 0;                  // variable menampung data input
+    
+    /* Algoritma */
+    gotoxy(40,13); printf("Penjelasan   : ");
+    while(1)
+	{
+        /* Proses Tampil ke layar */	
+        printf("%c", karakter[array]);
+        array = array + 1;
+        
+        if(array >= 99 || karakter[array] == '\0')
+        {
+        	break;
+		}
+		
+        if(array == 54)
+        {
+           	gotoxy(55,14);
+		}
+    }
+}
+
+
 void color(int color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);

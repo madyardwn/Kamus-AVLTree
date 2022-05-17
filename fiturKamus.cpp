@@ -71,12 +71,12 @@ address *tambahDataKata(address *root)
 		gotoxy(40,8);  printf("=====================================================================");
 		
 		/* Input Kata Indonesia */
-		gotoxy(40,9); printf("Kata       : ");
+		gotoxy(40,9); printf("Kata       :");
 		inputKata(kata);
 		fflush(stdin);
 		
 		/* Input Penjelasan dari katanya */
-		gotoxy(40,11); printf("Penjelasan : ");
+		gotoxy(40,11); printf("Penjelasan :");
         inputPenjelasan(penjelasan);
 		fflush(stdin);
 		
@@ -142,12 +142,12 @@ address *tambahDataKata(address *root)
 		gotoxy(65,7);  printf("========================");
 		gotoxy(40,8);  printf("=====================================================================");
 		gotoxy(40,11); printf("kata         : %s", kata);
-		gotoxy(40,13); printf("Penjelasan   : %s", penjelasan);
+		printWrapPenjelasan(penjelasan); 
 		gotoxy(40,16); printf("Kelas kata   : %s", kelasKata); 
 		
 		/* Input apakah data sudah benar */
 		gotoxy(65,19); printf("      Data Ok?");
-		gotoxy(45,23); printf("Tekan(T/t: Revisi, Bebas: Lanjut) ");
+		gotoxy(45,23); printf("Tekan (T/t: Revisi, Bebas: Lanjut)");
 		dataOk = getch();
 		
 	}while(dataOk == 'T' || dataOk == 't');
@@ -196,7 +196,7 @@ void temukanDataKata(address *root)
 		else if(strcmp(kata, root->KataIndonesia) == 0)
 		{
 			gotoxy(40,11); printf("kata         : %s", root->KataIndonesia);
-			gotoxy(40,13); printf("Penjelasan   : %s", root->PenjelasanKata);
+			printWrapPenjelasan(root->PenjelasanKata); 
 			gotoxy(40,16); printf("Kelas kata   : %s", root->KelasKata);
 			kataKetemu = true;
 		} 
@@ -291,7 +291,7 @@ void hapusDataKata(address *root)
 		if(isKataTersedia(root, kata) && root!=NULL)
 		{		
 			gotoxy(65,19); printf("    Yakin dihapus?");
-			gotoxy(45,23); printf("Tekan(Y/y: Yakin, Bebas: Ga yakin) ");
+			gotoxy(45,23); printf("Tekan (Y/y: Yakin, Bebas: Ga yakin) ");
 			yakin = getch();
 		
 			if(yakin == 'Y' || yakin == 'y')
@@ -330,13 +330,15 @@ void cariBerdasarkanKelasKata(address *root, char *dataKelasKata, bool *cek, int
 		cariBerdasarkanKelasKata(root->LeftSon, dataKelasKata, &(*cek), &(*kata), &(*baris), &(*kolom));
 		if(strcmp(dataKelasKata, root->KelasKata) == 0)
 		{
-			if(*kata == 5){
-				gotoxy(12, *baris++);
+			if(*kata == 21){
+				*baris == 3; 
+				*kolom += 25;
+				gotoxy(*kolom, *baris);
 			}
 			gotoxy(*kolom, *baris); printf("%s ", root->KataIndonesia);
             *cek = true;
-            *kata++; 
-            *kolom += 10; 
+            *kata += 1; 
+            *baris += 1; 
 		} 
 		cariBerdasarkanKelasKata(root->RightSon, dataKelasKata, &(*cek), &(*kata), &(*baris), &(*kolom));
 	}
@@ -354,7 +356,6 @@ void printBerdasarkanKelasKata(address *root)
 	int baris = 3; 
 	
     /* Algortima */
-    KelasKata:
 	    system("cls");
 	    color(7); 
 		boxTampilanMenu();
@@ -425,10 +426,9 @@ void printBerdasarkanKelasKata(address *root)
     {
         gotoxy(42,26); printf("Data kelas kata %s tidak tersedia nihh :(", kelasKata);
 		Sleep(2500);
-		goto KelasKata;
     }
     
-    gotoxy(45,26); printf("                                         ");
+    gotoxy(42,26); printf("                                         ");
 	gotoxy(45,26); system("pause");
 }
 
