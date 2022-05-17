@@ -312,7 +312,7 @@ void hapusDataKata(address *root)
 		{
 			gotoxy(45,23); printf("Kata %s tidak tersedia nihh :(", kata);
 			Sleep(2500);
-			goto menuHapus; 
+            return;
 		}
 		
 	simpanKeFile(root);
