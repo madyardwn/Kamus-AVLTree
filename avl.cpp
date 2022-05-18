@@ -119,35 +119,35 @@ address *rightRotate(address *root)
 address *rotate(address *root)
 {
     /* Kamus Data Lokal */
-    int bf;                     // balance factor
+    int balanceFactorRoot;                     // balance factor
 
     /* Algoritma */
 
     /* Mengambil tinggi tree yang baru dan mengidentifikasi anak yang tidak balance */
     root->height = max(getHeight(root->LeftSon), getHeight(root->RightSon))+1;
-    bf = getBalanceFactor(root);
+    balanceFactorRoot = getBalanceFactor(root);
 
     /* Jika anak kiri menyebabkan tidak balance dan anak kiri memiliki child di kiri */
-    if(bf>1 && getBalanceFactor(root->LeftSon)>0)
+    if(balanceFactorRoot>1 && getBalanceFactor(root->LeftSon)>0)
 	{
         root = rightRotate(root);
     }
 
     /* Jika anak kiri menyebabkan tidak balance dan anak kiri memiliki child di kanan */
-    else if(bf > 1 && getBalanceFactor(root->LeftSon) <= 0)
+    else if(balanceFactorRoot > 1 && getBalanceFactor(root->LeftSon) <= 0)
 	{
         root->LeftSon = leftRotate(root->LeftSon);
         root = rightRotate(root);
     }
 
     /* Jika anak kanan menyebabkan tidak balance dan anak kanan memiliki child di kanan */
-    else if(bf < -1 && getBalanceFactor(root->RightSon)<=0)
+    else if(balanceFactorRoot < -1 && getBalanceFactor(root->RightSon)<=0)
 	{
         root = leftRotate(root);
     }
 
     /* Jika anak kanan menyebabkan tidak balance dan anak kanan memiliki child di kiri */
-    else if(bf < -1 && getBalanceFactor(root->RightSon)>0)
+    else if(balanceFactorRoot < -1 && getBalanceFactor(root->RightSon)>0)
 	{
         root->RightSon = rightRotate(root->RightSon);
         root = leftRotate(root);
