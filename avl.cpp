@@ -421,6 +421,7 @@ char *inputPenjelasan(char karakter[100])
 			else if(array == 54)
 			{
 				gotoxy(106,11);
+                printf("\b \b");
 				array--; 
 			}
             else
