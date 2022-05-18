@@ -186,7 +186,7 @@ address *InsertAVL(address *root, char *dataKata, char *dataPenjelasanKata,  cha
     {
     	gotoxy(45,23); printf("                                          ");
 		gotoxy(38,23); printf("Ehh Ternyata data kata sudah tersedia, Gagal dehh..."); 
-        getch();
+        Sleep(2000); 
         return root;
     }
 

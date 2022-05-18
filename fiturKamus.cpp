@@ -330,10 +330,10 @@ void cariBerdasarkanKelasKata(address *root, char *dataKelasKata, bool *cek, int
 		cariBerdasarkanKelasKata(root->LeftSon, dataKelasKata, &(*cek), &(*kata), &(*baris), &(*kolom));
 		if(strcmp(dataKelasKata, root->KelasKata) == 0)
 		{
-			if(*kata == 21){
-				*baris == 3; 
+			if(*kata == 21)
+			{
+				*baris = 3; 
 				*kolom += 25;
-				gotoxy(*kolom, *baris);
 			}
 			gotoxy(*kolom, *baris); printf("%s ", root->KataIndonesia);
             *cek = true;
