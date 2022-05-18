@@ -22,7 +22,7 @@ int main()
 	
 	/* Masuk ke tampilan awal */
 	boxTampilanAwal();
-	
+	pilihanAwal(&run); 
 	/* Masuk ke main menu */
 	while(run)
 	{

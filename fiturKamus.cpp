@@ -429,7 +429,7 @@ void printBerdasarkanKelasKata(address *root)
 		Sleep(2500);
     }
     
-    gotoxy(42,26); printf("                                         ");
+    gotoxy(42,26); printf("                                                      ");
 	gotoxy(45,26); system("pause");
 }
 
