@@ -414,7 +414,7 @@ char *inputPenjelasan(char karakter[100])
         else if(ch == 8 || ch == 127)
 		{
             /* Jika line berada di line awal pengahpusan tidak bekerja */
-            if(array < 0)
+            if(array <= 0)
 			{
                 continue;
             }
@@ -448,6 +448,7 @@ char *inputPenjelasan(char karakter[100])
             if(array == 54)
             {
             	gotoxy(52,12);
+                printf("%c", karakter[array]);
 			}
         }
     }
