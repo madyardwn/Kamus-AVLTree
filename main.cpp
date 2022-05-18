@@ -29,11 +29,12 @@ int main()
 		system("cls");
 		color(7);
 		boxTampilanMenu();
-		run = mainMenu(root);
+		root = mainMenu(root, &run);
 	}
 	
 	/* Menghapus tree setelah tidak digunakan */
 	deleteBinaryTree(root);
 	
+	color(7);
 	return 0;
 }

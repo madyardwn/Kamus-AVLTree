@@ -11,9 +11,9 @@
 
 #include "fiturKamus.h"
 
-bool mainMenu(address *root);
+address *mainMenu(address *root, bool *run);
 void gotoxy(int x, int y);
-void pilihanAwal();
+void pilihanAwal(bool *run);
 void boxTampilanAwal();
 void boxFileTidakTersedia(); 
 void boxTampilanMenu();

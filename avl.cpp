@@ -448,7 +448,7 @@ char *inputPenjelasan(char karakter[100])
             
             if(array == 54)
             {
-            	gotoxy(52,12);
+            	gotoxy(51,12);
                 printf("%c", karakter[array]);
 			}
         }
