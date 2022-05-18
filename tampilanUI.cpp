@@ -11,7 +11,7 @@
 #include <cstdio>
 #include <cstdlib>
 
-bool mainMenu(address *root)
+address *mainMenu(address *root, bool *run)
 {
 	/* kamus Data Lokal */
 	char kata[25];          // variable untuk menampung kata 
@@ -22,13 +22,13 @@ bool mainMenu(address *root)
 			root = tambahDataKata(root); 
 			break;
 		case 2:
-			hapusDataKata(root); 
+			root = hapusDataKata(root); 
 			break;
 		case 3:
 			printBerdasarkanKelasKata(root); 
 			break;
 		case 27:
-			boxTampilanAwal(); 
+			pilihanAwal(&(*run));
 			break; 
 		case 59:
 			temukanDataKata(root);  
@@ -36,7 +36,7 @@ bool mainMenu(address *root)
 		default:
 			break;
 	}
-	return true; 
+	return root; 
 }
 
 void boxTampilanAwal()
@@ -68,19 +68,17 @@ void boxTampilanAwal()
 	gotoxy(10,24); printf("\xB3"); gotoxy(110,24); printf("\xB3");
 	gotoxy(10,25); printf("\xC0\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xC4\xD9");
 	gotoxy(50,26); printf("<--LEFT | RIGHT-->");
-		
-	pilihanAwal();
-
 }
 
 
-void pilihanAwal()
+void pilihanAwal(bool *run)
 {
 	/* Kamus Data Global */
 	int counter = 2;
 	int SetColor[] = {7,7}; //7 Warna default (putih)
 	char keyCursor;
 	
+	boxTampilanAwal();
 	/* Algoritma */
 	while(1){
 		
@@ -109,8 +107,8 @@ void pilihanAwal()
 				break;
 				
 			} else {
-				gotoxy(2,27);
-				exit(1);
+				*run = false;
+				break;
 			}	
 		}
 		

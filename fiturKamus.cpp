@@ -268,7 +268,7 @@ bool isKataTersedia(address *root, char *dataKata)
 
 
 /*---------------------------------*/
-void hapusDataKata(address *root)
+address *hapusDataKata(address *root)
 {
 	/* Kamus Data Lokal */
 	char kata[25];
@@ -313,12 +313,12 @@ void hapusDataKata(address *root)
 		{
 			gotoxy(45,23); printf("Kata %s tidak tersedia nihh :(", kata);
 			Sleep(2500);
-            return;
 		}
 		
 	simpanKeFile(root);
 	gotoxy(45,23); printf("                                         ");
 	gotoxy(45,23); system("pause");
+	return root;
 }
 
 /*---------------------------------*/
