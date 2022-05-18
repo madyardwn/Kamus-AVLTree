@@ -21,4 +21,5 @@ void boxTampilanKelasKata();
 int pilihanMainMenu(); 
 void printWrapPenjelasan(char karakter[100]); 
 void color(int color);
+
 #endif
