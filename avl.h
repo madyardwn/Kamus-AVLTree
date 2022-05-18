@@ -21,7 +21,7 @@ typedef struct InfoKataIndonesia{
     struct InfoKataIndonesia *LeftSon;
     struct InfoKataIndonesia *RightSon;
     char KataIndonesia[25];
-    char PenjelasanKata[100];
+    char PenjelasanKata[220];
     char KelasKata[4];
     int height;
 }address;
@@ -41,6 +41,7 @@ address *remove(address *root,  char *dataKata);
 void InPrint(address *root);
 void deleteBinaryTree(address *root);
 char *inputKata(char karakter[25]);
-char *inputPenjelasan(char karakter[100]);
+char *inputPenjelasan(char karakter[220]);
+void InsertKataSamaBedaMakna(address *root, char *PenjelasanKata);
 
 #endif 

@@ -8,6 +8,7 @@
 ------------------------------------------------------------- */
 #include "avl.h"
 #include "tampilanUI.h"
+#include <cstring>
 
 
 int max(int data1, int data2)
@@ -156,6 +157,16 @@ address *rotate(address *root)
     return root;
 }
 
+void InsertKataSamaBedaMakna(address *root, char *PenjelasanKata)
+{
+    if(strlen(PenjelasanKata) >= 300)
+    {
+        return;
+    }
+    strcat(root->PenjelasanKata, ", ");
+    strcat(root->PenjelasanKata, PenjelasanKata);
+}
+
 address *InsertAVL(address *root, char *dataKata, char *dataPenjelasanKata,  char *dataKelasKata)
 {
     /* Algoritma */
@@ -181,12 +192,10 @@ address *InsertAVL(address *root, char *dataKata, char *dataPenjelasanKata,  cha
         root->RightSon = InsertAVL(root->RightSon, dataKata, dataPenjelasanKata, dataKelasKata);
     }
 
-    /* Jika nilai dataKata sama penyambungan di batalkan */
+    /* Jika nilai dataKata sama, menjadi makna lain */
     else
     {
-    	gotoxy(45,23); printf("                                          ");
-		gotoxy(38,23); printf("Ehh Ternyata data kata sudah tersedia, Gagal dehh..."); 
-        Sleep(2000); 
+        InsertKataSamaBedaMakna(root, dataPenjelasanKata);
         return root;
     }
 
@@ -391,12 +400,13 @@ char *inputKata(char karakter[25])
     return karakter;
 }
 
-char *inputPenjelasan(char karakter[100])
+char *inputPenjelasan(char karakter[220])
 {
     /* Kamus Data Lokal*/
     char ch;                        // variable penampung input karakter
     int array = 0;                  // variable menampung data input
-    
+    int baris = 0;
+
     /* Algoritma agar insert tidak melebihi batas (25 karakter )*/
     memset(karakter, 0, 1);
     while(1)
@@ -418,9 +428,11 @@ char *inputPenjelasan(char karakter[100])
 			{
                 continue;
             }
-			else if(array == 54)
+			
+            else if(array % 54 == 0)
 			{
-				gotoxy(106,11);
+                baris--;
+				gotoxy(106,baris+11);
                 printf("\b \b");
 				array--; 
 			}
@@ -435,7 +447,7 @@ char *inputPenjelasan(char karakter[100])
         else
 		{
             /* Jika batas karakter yang dinput sama dengan 100 tidak dapat menginput lagi */
-        	if(strlen(karakter)>=99)
+        	if(strlen(karakter)>=219)
 			{
             	continue;
 			}
@@ -446,10 +458,11 @@ char *inputPenjelasan(char karakter[100])
             printf("%c", karakter[array]);
             array = array + 1;
             
-            if(array == 54)
+            if(array % 54 == 0)
             {
-            	gotoxy(51,12);
+            	gotoxy(51,baris+12);
                 printf("%c", karakter[array]);
+                baris++;
 			}
         }
     }
@@ -458,6 +471,3 @@ char *inputPenjelasan(char karakter[100])
     karakter[array] = '\0';
     return karakter;
 }
-
-
-

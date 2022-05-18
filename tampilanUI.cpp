@@ -294,10 +294,11 @@ void boxTampilanKelasKata()
 }
 
 
-void printWrapPenjelasan(char karakter[100])
+void printWrapPenjelasan(char karakter[220])
 {
 	/* Kamus Data Lokal*/
-    int array = 0;                  // variable menampung data input
+    int array = 0;
+    int baris = 0;                  // variable menampung data input
     
     /* Algoritma */
     gotoxy(40,13); printf("Penjelasan   : ");
@@ -307,14 +308,14 @@ void printWrapPenjelasan(char karakter[100])
         printf("%c", karakter[array]);
         array = array + 1;
         
-        if(array >= 99 || karakter[array] == '\0')
-        {
+        if(array >= 199 || karakter[array] == '\0') {
         	break;
 		}
 		
-        if(array == 54)
+        if(array % 54 == 0)
         {
-           	gotoxy(55,14);
+           	gotoxy(55,baris+14);
+            baris++;
 		}
     }
 }

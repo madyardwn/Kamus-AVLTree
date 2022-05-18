@@ -19,7 +19,7 @@ address *bukaFile (address *root)
 	/* Kamus Data Lokal */
 	FILE *bukaFile;             // variable untuk menampung file
 	char kata[25];              // variable untuk menampung kata
-	char penjelasan[100];       // variable untuk menampung penjelasan
+	char penjelasan[220];       // variable untuk menampung penjelasan
 	char kelasKata[4];          // variable untuk menampung kelas kata
 	
     /* Algortima */
@@ -40,6 +40,8 @@ address *bukaFile (address *root)
 		while(!feof(bukaFile))
 		{   
 			fscanf(bukaFile, "%[^;];%[^;];%s\n", kata, penjelasan, kelasKata); 
+            printf("Insert kata : %s\n", kata);
+            Sleep(20);
             root = InsertAVL(root, kata, penjelasan, kelasKata);
         }
 	}
@@ -53,7 +55,7 @@ address *tambahDataKata(address *root)
 	/* Kamus Data Lokal */
 	char kata[25];                  // variable untuk menampung kata
 	char *kelasKata;                // variable untuk menampung kelas kata
-    char penjelasan[100];           // variable untuk menampung penjelasan
+    char penjelasan[220];           // variable untuk menampung penjelasan
 	char dataOk;                    // variable untuk konfirmasi
 	bool kelasKataValid;            // variable untuk memvalidasi kata yang diinput
 	int pilihKelasKata;             // variable untuk memilih kelas kata
@@ -84,13 +86,13 @@ address *tambahDataKata(address *root)
 		kelasKataValid = false;
 		while(kelasKataValid == false)
 		{
-			gotoxy(65,14); printf("      1. Adjektiva");
-			gotoxy(65,15); printf("      2. Adverbia");
-			gotoxy(65,16); printf("      3. Nomina");
-			gotoxy(65,17); printf("      4. Verba");
+			gotoxy(65,16); printf("      1. Adjektiva");
+			gotoxy(65,17); printf("      2. Adverbia");
+			gotoxy(65,18); printf("      3. Nomina");
+			gotoxy(65,19); printf("      4. Verba");
 			gotoxy(45,23); printf("                                         ");
 			gotoxy(45,23); printf("Pilih dengan angka (1-4)");
-			gotoxy(40,18); printf("Kelas Kata : ");
+			gotoxy(40,20); printf("Kelas Kata : ");
 			scanf("%d", &pilihKelasKata);
 			fflush(stdin); 
 			
@@ -143,7 +145,7 @@ address *tambahDataKata(address *root)
 		gotoxy(40,8);  printf("=====================================================================");
 		gotoxy(40,11); printf("kata         : %s", kata);
 		printWrapPenjelasan(penjelasan); 
-		gotoxy(40,16); printf("Kelas kata   : %s", kelasKata); 
+		gotoxy(40,18); printf("Kelas kata   : %s", kelasKata); 
 		
 		/* Input apakah data sudah benar */
 		gotoxy(65,19); printf("      Data Ok?");
@@ -197,7 +199,7 @@ void temukanDataKata(address *root)
 		{
 			gotoxy(40,11); printf("kata         : %s", root->KataIndonesia);
 			printWrapPenjelasan(root->PenjelasanKata); 
-			gotoxy(40,16); printf("Kelas kata   : %s", root->KelasKata);
+			gotoxy(40,18); printf("Kelas kata   : %s", root->KelasKata);
 			kataKetemu = true;
 		} 
 		
@@ -331,14 +333,8 @@ void cariBerdasarkanKelasKata(address *root, char *dataKelasKata, bool *cek, int
 		cariBerdasarkanKelasKata(root->LeftSon, dataKelasKata, &(*cek), &(*kata), &(*baris), &(*kolom));
 		if(strcmp(dataKelasKata, root->KelasKata) == 0)
 		{
-			if(*kata == 21)
-			{
-				*baris = 3; 
-				*kolom += 25;
-			}
 			gotoxy(*kolom, *baris); printf("%s ", root->KataIndonesia);
             *cek = true;
-            *kata += 1; 
             *baris += 1; 
 		} 
 		cariBerdasarkanKelasKata(root->RightSon, dataKelasKata, &(*cek), &(*kata), &(*baris), &(*kolom));
@@ -353,7 +349,7 @@ void printBerdasarkanKelasKata(address *root)
 	bool kelasKataValid;
 	bool cek = false;
 	int kata = 1;
-	int kolom = 12; 
+	int kolom = 3; 
 	int baris = 3; 
 	
     /* Algortima */
