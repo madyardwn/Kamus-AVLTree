@@ -25,7 +25,7 @@ address *bukaFile (address *root)
     /* Algortima */
 
 	/* Proses buka file database kamus bahasa Indonesia */
-	bukaFile = (fopen("fileDataKamus.txt", "r"));
+	bukaFile = (fopen(namaFileData, "r"));
 	
 	/* Cek Apakah file database tersebut ada atau tidak */
 	if(!bukaFile)
@@ -297,6 +297,7 @@ void hapusDataKata(address *root)
 			if(yakin == 'Y' || yakin == 'y')
 			{
 				root = remove(root, kata);
+				gotoxy(45,23); printf("                                          ");
 				gotoxy(45,23); printf("Data berhasil dihapus yaa");
 				Sleep(2000); 
 			} 
@@ -454,7 +455,7 @@ void simpanKeFile(address *root)
     /* Algortima */
 
 	/* Proses membuka dan menulis data ke dalam file penyimpanan */
-	filePenyimpanan = fopen("fileDataKamus.txt", "w");
+	filePenyimpanan = fopen(namaFileData, "w");
 	tulisKeFile(filePenyimpanan, root); 
 	
 	/* Menutup file penyimpanan */

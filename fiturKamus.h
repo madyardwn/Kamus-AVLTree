@@ -15,6 +15,7 @@
 #include <windows.h>
 #include <string>
 #include <unistd.h>
+#define namaFileData "fileDataKamus.txt"
 
 #include "avl.h"
 #include "tampilanUI.h"
