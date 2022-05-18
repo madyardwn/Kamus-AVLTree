@@ -5,6 +5,8 @@
         - Achmadya Ridwan I 	(211511001)
         - Wildan Setya Nugraha 	(211511032)
     Program     : Kamus Bahasa Indonesia menggunakan AVL Tree
+    
+    Pembuat Modul : Achmadya Ridwan I	(211511001)
 ------------------------------------------------------------- */
 #include "avl.h"
 #include "tampilanUI.h"
